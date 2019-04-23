@@ -15,7 +15,7 @@ public class WebInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info("调用 preHandle");
+		logger.info("Call preHandle");
 		Cookie[] cookies = request.getCookies();
         if (cookies == null || cookies.length == 0) {
         }
@@ -32,13 +32,13 @@ public class WebInterceptor implements HandlerInterceptor {
 				modelAndView.setViewName("/error/error.html");
 			}
 		}
-		logger.info("调用 postHandle");
+		logger.info("Call postHandle");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		logger.info("调用 afterCompletion");
+		logger.info("Call afterCompletion");
 
 	}
 
