@@ -12,10 +12,10 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.documentation.spi.DocumentationType;
 
-@Configuration //必须存在
-@EnableSwagger2 //必须存在
-@EnableWebMvc //必须存在
-@ComponentScan(basePackages = {"io.hpb.web3.controller"}) //必须存在 扫描的API Controller package name 也可以直接扫描class (basePackageClasses)
+@Configuration //Must quote
+@EnableSwagger2 //Must quote
+@EnableWebMvc //Must quote
+@ComponentScan(basePackages = {"io.hpb.web3.controller"})
 public class SwaggerConfig{
     @Bean
     public Docket customDocket() {
@@ -26,8 +26,8 @@ public class SwaggerConfig{
     private ApiInfo apiInfo() {
         Contact contact = new Contact("gene", "http://www.hpb.io/", "gene@hpb.io");
         return new ApiInfoBuilder()
-                .title("HPB区块链中间件API接口")
-                .description("HPB区块链中间件API的统一接口服务")
+                .title("HPB Block Chain Middleware API Interface")
+                .description("Unified Interface Service of HPB Block Chain Middleware API")
                 .contact(contact)
                 .version("1.1.0")
                 .build();
