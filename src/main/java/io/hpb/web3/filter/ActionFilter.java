@@ -23,19 +23,19 @@ public class ActionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// 获取系统时间
+		// get SysTime
 		int hour = LocalTime.now().getHour();
 		logger.info(LocalTime.now().toString());
 		
-		// 设置限制运行时间 0-4点
+		// Setting Limits on Run Time 0-4点
 		if (hour < 4) {
 			/*HttpServletResponse httpResponse = (HttpServletResponse) response;
 			httpResponse.setCharacterEncoding("UTF-8");
 			httpResponse.setContentType("application/json; charset=utf-8");
-			// 消息
+			
 			Map<String, Object> messageMap = new HashMap<>();
 			messageMap.put("status", "1");
-			messageMap.put("message", "此接口可以请求时间为:0-4点");
+			messageMap.put("message", "This interface can request a time of :0-4点");
 			ObjectMapper objectMapper = new ObjectMapper();
 			String writeValueAsString = objectMapper.writeValueAsString(messageMap);
 			response.getWriter().write(writeValueAsString);*/
@@ -48,6 +48,6 @@ public class ActionFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		logger.info("调用destroy");
+		logger.info("Call destroy");
 	}
 }
