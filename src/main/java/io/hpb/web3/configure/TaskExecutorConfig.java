@@ -14,11 +14,11 @@ public class TaskExecutorConfig implements AsyncConfigurer {
 	@Override
 	public Executor getAsyncExecutor() {
 		ThreadPoolTaskExecutor taskExecutor=new ThreadPoolTaskExecutor();
-		//线程池维护线程的最少数量
+		//Thread pool maintains the min number of threads
 		taskExecutor.setCorePoolSize(50);
-		//线程池维护线程的最大数量
+		//Thread pool maintains the max number of threads
 		taskExecutor.setMaxPoolSize(2000);
-		//缓存队列
+		//Cache queue
 		taskExecutor.setQueueCapacity(800);
 		taskExecutor.initialize();
 		return taskExecutor;
