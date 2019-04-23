@@ -45,8 +45,8 @@ public class HpbWeb3Controller{
 	private final BigInteger gasLimit = new BigInteger("95000000");
 	@Autowired
 	private Admin admin;
-	@ApiOperation(value="通过根据交易hash查询交易收据",notes = "过根据交易hash查询交易收据"
-			+ " reqStrList [  参数1：交易hash]")
+	@ApiOperation(value="Search the transaction receipt according to the transaction hash",notes = ""
+			+ " reqStrList [  Parameter1：transaction hash]")
 	@PostMapping("/QueryByHash")
 	public List<Object> QueryByHash(@RequestBody List<String> reqStrList)throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -62,7 +62,7 @@ public class HpbWeb3Controller{
 		}
 		return list;
 	}
-	@ApiOperation(value="获得当前区块号",notes = "获得当前区块号")
+	@ApiOperation(value="parameter",notes = "")
 	@PostMapping("/getCurrentBlock")
 	public List<Object> getCurrentBlock()throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -70,8 +70,8 @@ public class HpbWeb3Controller{
 		list.add(blockNumber);
 		return list;
 	}
-	@ApiOperation(value="获得当前账户的Nonce",notes = "获得当前账户的Nonce"
-			+ " reqStrList [ 参数1：账户地址;")
+	@ApiOperation(value="Obtaining the current account Nonce",notes = " "
+			+ " reqStrList [ Parameter1：Account address;")
 	@PostMapping("/getCurrentNonce")
 	public List<Object> getCurrentNonce(@RequestBody List<String> reqStrList)throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -85,8 +85,8 @@ public class HpbWeb3Controller{
 		}
 		return list;
 	}
-	@ApiOperation(value="获得当前账户的余额",notes = "获得当前账户的余额"
-			+ " reqStrList [ 参数1：账户地址; ]")
+	@ApiOperation(value="Obtain the balance of the current account",notes = ""
+			+ " reqStrList [ Parameter1：Account address; ]")
 	@PostMapping("/getBalance")
 	public List<Object> getBalance(@RequestBody List<String> reqStrList)throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -98,8 +98,8 @@ public class HpbWeb3Controller{
 		}
 		return list;
 	}
-	@ApiOperation(value="发送交易",notes = "发送交易"
-			+ " reqStrList [ 参数1：账户keystore地址; 参数2：密码; 参数3：接收账户地址;参数4：转账金额;]")
+	@ApiOperation(value="Sending transaction",notes = ""
+			+ " reqStrList [ Parameter1：Account keystore address; Parameter2：Password; Parameter3：Receiving Account Address;Parameter4：Transfer amount;]")
 	@PostMapping("/sendTransaction")
 	public List<Object> sendTransaction(@RequestBody List<String> reqStrList)throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -126,8 +126,8 @@ public class HpbWeb3Controller{
 		}
 		return list;
 	}
-	@ApiOperation(value="调用HpbNodes智能合约",notes = "调用HpbNodes智能合约"
-			+ " reqStrList [ 参数1：账户keystore地址; 参数2：密码]")
+	@ApiOperation(value="Call HpbNodes Smart Contract",notes = ""
+			+ " reqStrList [ Parameter1：Account keystore address; Parameter2：Password]")
 	@PostMapping("/invokeHpbNodes")
 	public List<Object> invokeHpbNodes(@RequestBody List<String> reqStrList)throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -137,7 +137,7 @@ public class HpbWeb3Controller{
 			Credentials credentials = WalletUtils.loadCredentials(password, keystore);
 			RawTransactionManager transactionManager=new RawTransactionManager(admin, credentials, ChainId.MAINNET);
 			HpbNodes hpbNodes = HpbNodes.load(contractAddr, admin, transactionManager, gasPrice, gasLimit);
-			//调用智能合约
+			//Call HpbNodes Smart Contract
 			Tuple4<DynamicArray<Address>, DynamicArray<Bytes32>, DynamicArray<Bytes32>, DynamicArray<Bytes32>> send = 
 					hpbNodes.getAllHpbNodes().send();
 			Bytes32 bytes32 = send.getValue2().getValue().get(1);
