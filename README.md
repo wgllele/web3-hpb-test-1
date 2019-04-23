@@ -16,8 +16,9 @@ open `package io.hpb.web3.controller;`
 
 @Autowired
 	private Admin admin;
-	@ApiOperation(value="通过根据交易hash查询交易收据",notes = "过根据交易hash查询交易收据"
-			+ " reqStrList [  参数1：交易hash]")
+	@ApiOperation(value="Search the transaction receipt according to the transaction hash",
+	notes = "Query the transaction receipt according to the transaction hash"
+			+ " reqStrList [  parameter1：transaction hash]")
 	@PostMapping("/QueryByHash")
 	public List<Object> QueryByHash(@RequestBody List<String> reqStrList)throws Exception{
 		List<Object> list=new ArrayList<Object>();
@@ -37,7 +38,7 @@ open `package io.hpb.web3.controller;`
 ```
 
 ```demo1 QueryByHash
-@ApiOperation(value="获得当前区块号",notes = "获得当前区块号")
+@ApiOperation(value="Get the current block number",notes = "Get the current block number")
 	@PostMapping("/getCurrentBlock")
 	public List<Object> getCurrentBlock()throws Exception{
 		List<Object> list=new ArrayList<Object>();
