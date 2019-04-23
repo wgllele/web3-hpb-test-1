@@ -29,10 +29,10 @@ import io.hpb.web3.filter.ActionFilter;
 import io.hpb.web3.interceptor.WebInterceptor;
 
 /**
- * @author Administrator # 默认值为 /**
+ * @author Administrator # The default value is /**
  *         spring.mvc.static-path-pattern=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
- *         spring.resources.static-locations=这里设置要指向的路径，多个使用英文逗号隔开 注意
- *         spring.mvc.static-path-pattern 只可以定义一个，目前不支持多个逗号分割的方式。
+ *         spring.resources.static-locations=Set the path to be pointed to here. Use English commas to separate notes.
+ *         spring.mvc.static-path-pattern Only one can be defined, and there is currently no support for multiple comma splitting.
  *         spring.mvc.view.prefix=/static/ spring.mvc.view.suffix=.jsp
  */
 @Configuration
@@ -69,7 +69,7 @@ public class HpbWebMvcConfigurerAdapter implements WebMvcConfigurer {
 		return registrationBean;
 	}
 	/**
-	 * 配置静态访问资源
+	 * Configuring static access resources
 	 * 
 	 * @param registry
 	 */
@@ -88,7 +88,7 @@ public class HpbWebMvcConfigurerAdapter implements WebMvcConfigurer {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
 	/**
-	 * 手动配置静态资源路径
+	 * Manual configuration of static resource paths
 	 */
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -113,7 +113,6 @@ public class HpbWebMvcConfigurerAdapter implements WebMvcConfigurer {
 	    }
 	}
 	/**
-	 * 以前要访问一个页面需要先创建个Controller控制类，再写方法跳转到页面
 	 * 
 	 * @param registry
 	 */
