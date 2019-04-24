@@ -2,7 +2,7 @@
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 	<contextName>HpbWeb3Test</contextName>
-	<!-- 项目的appid -->
+	<!-- appid -->
 	<property name="APP_ID" value="HpbWeb3Test" />
 	<property name="LOG_PATH" value="/Users/hpb2017/logs/"></property>
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -89,44 +89,43 @@
 	</appender>
 
 	<appender name="ASYNC_LOG" class="ch.qos.logback.classic.AsyncAppender">
-		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		<!-- No logs are lost. By default, if 80% of the queue is full, logs at TRACT, DEBUG, INFO levels are discarded. -->
 		<discardingThreshold>0</discardingThreshold>
-		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		<!-- Change the default queue depth, which affects performance. The default value is 256 -->
 		<queueSize>512</queueSize>
 		<appender-ref ref="FILE_LOG" />
 	</appender>
 	<appender name="ASYNC_LOG" class="ch.qos.logback.classic.AsyncAppender">
-		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
 		<discardingThreshold>0</discardingThreshold>
-		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+
 		<queueSize>512</queueSize>
 		<appender-ref ref="FILE_LOG" />
 	</appender>
 	<appender name="ASYNC_LOG_DEBUG" class="ch.qos.logback.classic.AsyncAppender">
-		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		 
 		<discardingThreshold>0</discardingThreshold>
-		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+		 
 		<queueSize>512</queueSize>
 		<appender-ref ref="FILE_DEBUG" />
 	</appender>
 	<appender name="ASYNC_LOG_INFO" class="ch.qos.logback.classic.AsyncAppender">
-		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+		 
 		<discardingThreshold>0</discardingThreshold>
-		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+	 
 		<queueSize>512</queueSize>
 		<appender-ref ref="FILE_INFO" />
 	</appender>
 	<appender name="ASYNC_LOG_WARN" class="ch.qos.logback.classic.AsyncAppender">
-		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+	
 		<discardingThreshold>0</discardingThreshold>
-		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+
 		<queueSize>512</queueSize>
 		<appender-ref ref="FILE_WARN" />
 	</appender>
 	<appender name="ASYNC_LOG_ERROR" class="ch.qos.logback.classic.AsyncAppender">
-		<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+
 		<discardingThreshold>0</discardingThreshold>
-		<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+	
 		<queueSize>512</queueSize>
 		<appender-ref ref="FILE_ERROR" />
 	</appender>
