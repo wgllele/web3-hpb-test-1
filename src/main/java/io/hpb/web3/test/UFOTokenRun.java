@@ -23,16 +23,16 @@ import io.hpb.web3.abi.datatypes.generated.Uint256;
 public class UFOTokenRun {
 
 	
-	//发布智能合约账号的，keystore全路径		
+	//Keystore Full Path for Publishing Intelligent Contract Accounts	
 	private static String keyStoreAbsolutePath = "/Users/hpb2017/path/hpbkey/UTC--2018-09-13T10-07-27.074Zd0e114"; 
-	//发布智能合约的账号密码
+	//Publish passwords for smart contracts
 	private static String fromPassword = "demo111111";
-    //发布智能合约的地址：这是目前已发布到主网的UFOToken智能合约地址，用户可以进行查询，但是不能转账，转账需要有HPB余额才能转账
+        //Publish the address of the intelligent contract: This is the UFOToken intelligent contract address which has been published to the main network. Users can query, but can not transfer. Transfer needs HPB balance to transfer.
 	private static String address = "0xfbbe0ba33812b531aced666d0bb2450216c11d11";
-    //开放的HPB节点URL地址，也可以自行搭建节点
-	private static String blockChainUrl = "http://pub.node.hpb.io/";
+        //Public Node of HPB Main Network
+	private static String blockChainUrl = "http://mainnet.hpb.io/";
     
-	//系统默认参数设置
+	//System default parameter settings
 	private static BigDecimal GAS_PRICE = Convert.toWei("18", Convert.Unit.GWEI);
 
 	private static BigDecimal GAS_LIMIT = Convert.toWei("99000000", Convert.Unit.HPB);
@@ -42,50 +42,51 @@ public class UFOTokenRun {
     
 	public static void main(String[] args) {
  
-	  //指定生成智能合约java映射类的package路径
-      String packageName = "io.hpb.web3.test";
-	  //指定生成智能合约java映射类源码的本地存放地址
-      String outDirPath = "//Users//hpb2017//test//erc20//UFO//java";
+	//Specify the package path to generate smart contract Java mapping classes
+        String packageName = "io.hpb.web3.test";
+	//Specify the local storage address for generating smart contract Java mapping class source code
+        String outDirPath = "//Users//hpb2017//test//erc20//UFO//java";
       
-      //指定智能合约源码的本地地址，这两个文件也放在本类的package下面，读者可以自行处理
+      //Specify the local address of the smart contract source code. These two files are also placed under the package of this class, and the reader can handle them by himself.
       String binFilePath = "//Users//hpb2017//test//erc20//UFO//bin//UFOToken.bin";
       String abiFilePath = "//Users//hpb2017//test//erc20//UFO//bin//UFOToken.abi";
 
 
         
-      //1、通过io.hpb.web3来生成智能合约sol源码的的映射类；然后把映射的类放到对应的package中
+      //1、Generate the mapping class of intelligent contract sol source code by io. hpb. web3; then put the mapping class into the corresponding package
       GenContractJavaCode(packageName, binFilePath, abiFilePath, outDirPath) ;
 
 
-  	  //2、发布智能合约，并好获取地址
+      //2、Publish Smart Contracts and Get Addresses
       String address = depolyUFOTokenTest();
 		
-      //3、得到智能合约的余额
+      //3、Get the balance of the smart contract
       getUFOTokenContractBalance();
 		
 	
-      //查询指定地址的erc20余额
+      //Query erc20 balance at specified address
       String  queryAddress = "0xd8ACcED8A7A92b334007f9C6127A848fE51D3C3b";
-      //4、校验智能合约并打印相关的信息	
+      
+      //4、Check smart contracts and print relevant information	
       checkUFOTokenContract(queryAddress);
 		
 		
-      //5、转账
+      //5、Transfer accounts
       String  toAddress = "0x6cb988b9ce48Fd3b5a328B582dd64F5C10d0E114";
       transferUFOTokenContract(toAddress,"13333333000000000000000000");
  
-		//5.2 查询余额
-		//checkUFOTokenContract(contractAddress,toAddress);
+      //5.2 Check the balance
+      //checkUFOTokenContract(contractAddress,toAddress);
 		
 	}
 	
 
 	/**
-	 * 通过智能合约的源码.sol文件和编译后的.bin文件生成java的源码
-	 * String packageName:java源码的packagename
-	 * String binFileName：存放智能合约bin文件地址
-	 * String abiFileName：存放智能合约的abi文件地址
-	 * String outDirPath ：java源码输出地址 
+	 * Generate the source code of Java through the source code of intelligent contract. sol file and compiled. bin file
+	 * String packageName: Packagename of Java source code
+	 * String binFileName： Store the address of intelligent contract bin file
+	 * String abiFileName： ABI file address for storing intelligent contracts
+	 * String outDirPath ： Java source output address
 	 * 
 	 * **/
 	public static void GenContractJavaCode(String packageName,String binFilePath,String abiFilePath,String outDirPath) {
@@ -104,7 +105,7 @@ public class UFOTokenRun {
 
 
 	/**
-	 * 通过编译智能合约源码得到合约映射的java类
+	 * Compiling Intelligent Contract Source Code to Get the Java Class of Contract Mapping
 	 * 
 	 * **/
 	public static String depolyUFOTokenTest(){
@@ -119,9 +120,9 @@ public class UFOTokenRun {
 	        credentials = WalletUtils.loadCredentials(fromPassword, keyStoreAbsolutePath);
 	        RawTransactionManager transactionManager=new RawTransactionManager(admin, credentials, ChainId.MAINNET);
 
-	        // 1.发布 TOKEN
+	        // 1.Release TOKEN
 	        UFOToken contract = UFOToken.deploy(admin, transactionManager, GAS_PRICE.toBigInteger(), GAS_LIMIT.toBigInteger()).send();
-	        System.out.println("合约地址：" + contract.getContractAddress());
+	        System.out.println("Contract address：" + contract.getContractAddress());
 	        contractAddress = contract.getContractAddress();
 	  
 	    }catch (Exception e){
@@ -132,7 +133,7 @@ public class UFOTokenRun {
 	
 	
 	/**
-	 * 查询余额
+	 * Check the balance
 	 * 
 	 * **/
 	public static BigDecimal getUFOTokenContractBalance(){
@@ -148,7 +149,7 @@ public class UFOTokenRun {
 	  
 	        BigInteger balance = admin.hpbGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance();
 	        balanceWeiAmt = Convert.fromWei(balance.toString(), Convert.Unit.HPB);
-	        System.out.println(address + "账户余额：" + balanceWeiAmt);
+	        System.out.println(address + "Account balance：" + balanceWeiAmt);
  
 	    }catch (Exception e){
 	        e.printStackTrace();
@@ -160,7 +161,7 @@ public class UFOTokenRun {
 	
 	
 	/**
-	 * 校验智能合约并打印地址ERC20余额
+	 * Check the smart contract and print the address ERC20 balance
 	 * 
 	 * **/
 	public static void checkUFOTokenContract(String queryAddress){
@@ -175,15 +176,15 @@ public class UFOTokenRun {
 	        credentials = WalletUtils.loadCredentials(fromPassword, keyStoreAbsolutePath);
 	        RawTransactionManager transactionManager=new RawTransactionManager(admin, credentials, ChainId.MAINNET);
 	        
-	        //检查合约是否可用
+	        //Check whether the contract is available
 
 	        UFOToken contract = UFOToken.load(address, admin, transactionManager, GAS_PRICE.toBigInteger(), GAS_LIMIT.toBigInteger());
-	        System.out.println("验证合约是否有效:" +contract.isValid() );
+	        System.out.println("Verify the validity of the contract:" +contract.isValid() );
 	        if(contract.isValid()) {
 		        BigInteger totalSupply = contract.totalSupply().send().getValue().divide(new BigInteger("1000000000000000000"));	        
-		        System.out.println("UFOtoken总供给量："+totalSupply);
-	        	    System.out.println(address+" UFOToken余额："+contract.balanceOf(new Address(address)).sendAsync().get().getValue().divide(new BigInteger("1000000000000000000")));	  			        
-		        System.out.println(queryAddress+" UFOToken余额："+contract.balanceOf(new Address(queryAddress)).sendAsync().get().getValue().divide(new BigInteger("1000000000000000000")));	  
+		        System.out.println("UFOtoken Total Supply："+totalSupply);
+	        	    System.out.println(address+" UFOToken balance："+contract.balanceOf(new Address(address)).sendAsync().get().getValue().divide(new BigInteger("1000000000000000000")));	  			        
+		        System.out.println(queryAddress+" UFOToken balance："+contract.balanceOf(new Address(queryAddress)).sendAsync().get().getValue().divide(new BigInteger("1000000000000000000")));	  
 	        }
 	        
 
@@ -205,11 +206,11 @@ public class UFOTokenRun {
 
 
 	/**
-	 * 转账
+	 * Transfer accounts
 	 * 
 	 * **/
 	public static void transferUFOTokenContract(String toAddress,String toValue){
-		//keystore全路径
+	    
 	    Credentials credentials = null;
 	    Admin admin = null;
 	    try{
@@ -219,10 +220,10 @@ public class UFOTokenRun {
 	        credentials = WalletUtils.loadCredentials(fromPassword, keyStoreAbsolutePath);
 	        RawTransactionManager transactionManager=new RawTransactionManager(admin, credentials, ChainId.MAINNET);
 
-	        // 转账交易
+	        // Transfer transaction
 	        UFOToken contract = UFOToken.load(address, admin, transactionManager, GAS_PRICE.toBigInteger(), GAS_LIMIT.toBigInteger());
 	        TransactionReceipt receipt =  contract.transfer(new Address(toAddress), new Uint256(new BigInteger(toValue))).send();
-	        System.out.println("交易Hash::::::"+receipt.getTransactionHash());
+	        System.out.println("transaction Hash::::::"+receipt.getTransactionHash());
 	        
 	    }catch (Exception e){
 	        e.printStackTrace();
